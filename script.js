@@ -31,13 +31,21 @@ $(document).ready(function (){
     // color time blocks past, present, future
     function colorHour() {
         var currentHour = moment().hours()
-        currentHour = 'hour' + currentHour
     
         console.log(currentHour)
 
         $('.row').each(function() {
             var hour = $(this).attr('id')
-            console.log(hour)
+            hour = hour.split("r");
+            hour = hour[1];
+
+            if(hour < currentHour) {
+                $(this).addClass('past')
+            } else if(hour == currentHour) {
+                $(this).addClass('present')
+            } else {
+                $(this).addClass('future')
+            }
         })
     }
     // call the function
